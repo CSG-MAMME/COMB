@@ -1,0 +1,133 @@
+\documentclass{amsart}
+\renewcommand{\baselinestretch}{1.1}
+%\setlength{\textwidth}{6.0in} \setlength{\oddsidemargin}{0.25in}
+%\setlength{\evensidemargin}{0.25in}
+%\renewcommand{\arraystretch}{.6}
+\parskip 2mm
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fullpage}
+
+%\setlength{\oddsidemargin}{.5in} \setlength{\evensidemargin}{.5in}
+%\setlength{\textwidth}{6.0in} \theoremstyle{plain}
+%\setlength{\topmargin}{-0.5in}\setlength{\textheight}{9.5in}
+
+\newtheorem{theirtheorem}{Theorem}
+\newtheorem{theirproposition}{Proposition}
+\renewcommand{\thetheirtheorem}{\Alph{theirtheorem}}
+\renewcommand{\thetheirproposition}{\Alph{theirproposition}}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\textbf{Theorem}}[section]
+\newtheorem{lemma}[theorem]{\textbf{Lemma}}
+\newtheorem*{lemma*}{\textbf{Lemma}}
+\newtheorem{corollary}[theorem]{\textbf{Corollary}}
+\newtheorem{proposition}[theorem]{\textbf{Proposition}}
+\newtheorem{claim}{\textbf{Claim}}
+\newtheorem{conjecture}{\textbf{Conjecture}}[section]
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\Summ}[1]{\underset{#1}{\sum}}
+\newcommand{\sti}[2]{\left\{\begin{array}{c} #1 \\ #2 \end{array}\right\}}
+
+\newcommand{\diam}{\emph{diam}}
+\newcommand{\conv}{\mbox{Conv}}
+\newcommand{\C}{\mathcal {C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\D}{\mathcal{D}}
+
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\ber}{\begin{eqnarray}}
+\newcommand{\eer}{\end{eqnarray}}
+\newcommand{\nn}{\nonumber}
+
+\def\st{2}
+
+\thispagestyle{empty}
+\begin{document}
+{\Large Combinatorics -- Spring 2020}
+
+
+
+
+%\large{Master on Applied Mathematics, Fall 2007}
+
+
+{\Large Chapter 1 -- Theorems on Posets}
+
+\vspace{0.5cm}
+
+ \hrule
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+
+
+\item[\textbf{Problem 1:}]
+    \begin{enumerate}
+        \item Show that the maximum size of a chain in a poset $P$ is equal to the minimum number of antichains in which $P$ can be decomposed.
+        \item Deduce that if a poset has $rs + 1$ elements, with $r,s \geq 1$, then $P$ possesses a chain of size $r+1$ or an anitchain of size $s+1$. Conclude that given a sequence of $rs + 1$ real numbers, there is either an increasing subsequence of length $r+1$ or a decreasing subsequence of length $s+1$.
+    \end{enumerate}
+\end{enumerate}
+%
+%
+\paragraph{\textbf{Solution (by Carlos Segarra):}} 
+\begin{enumerate}
+    \item[\textbf{(a)}] 
+        Let $C$ be a maximal (in cardinality) chain in a poset $P$, and let $|C|$ be its cardinality.
+        Let $\text{dec}(P) = A_1 \cup \dots \cup A_s$ be an antichain decomposition of $P$.
+        We want to show that $|C| = s$.
+
+        In first place, it is clear that for every $C'$, chain in $P$, for all $c'_i, c'_j \in C'$, these two elements are comparable, thus they can not be in the same antichain in $\text{dec}(P)$.
+        As a consequence it holds $|C'| \leq s$ for all $C'$ chain in $P$, as we need at least a different antichain for each element in the chain.
+        In particular $|C| \leq s$. 
+
+        It remains to proof $s \leq |C|$. We will do so by means of the following lemma:
+        \begin{lemma*}
+            If $P$ has no chain with $m+1$ elements, then $P$ is the union of $m$ antichains.
+        \end{lemma*}
+        \begin{proof}
+            We will proof the result by induction on the size of a maximal chain $C$, $|C| = m$.
+            \begin{itemize}
+                \item \textbf{If $m = 1$:}
+                    if the size of the maximal chain is $1$, it means that no two elements in $P$ are comparable, hence $P$ itself is an antichain (hence a union of one antichain).
+                \item \textbf{If $m > 1$:}
+                    let us now define $M$ to be the set of maximal elements of $P$, this is, elements that are larger than all other elements they are comparable with.
+                    It is clear that $M$ is, by construction, an antichain.
+                    Let us now consider $P' = P \backslash M$ and $C'$ a maximal chain in $P'$ with size $m'$.
+                    As we removed an antichain, $m'$ equals either $m$ or $m-1$.
+                    \begin{itemize}
+                        \item[(i)] \textbf{If $m' = m - 1$:}
+                            then we can apply the induction hypothesis and $A'_1 \cup \dots \cup A'_{m-1}$ is an antichain decomposition of $P'$.
+                            Given that $P' \subset P$, $A'_i$ are also antichains of $P$, and $A_1 \cup \dots \cup A_{m-1} \cup M$ is an antichain decomposition of $P$ in $m$ sets.
+                        \item[(iii)] \textbf{If $m' = m$:} 
+                            then it must be that all $c_i' \in C'$ are not comparable to any of the $m_i \in M$, otherwise we could build a chain of length $m + 1$.
+                            But this case is impossible as then the maximum element in $C'$, $c_{m-1}'$, should have been included in $M$ in first place, and hence should not be in $P'$.
+                    \end{itemize}
+            \end{itemize}
+        \end{proof}
+        The lemma guatantees that there exists an antichain decomposition with as many elements as the largest antichain, hence the minimum antichain decomposition must necessarily be smaller or equal than this value, proving the desired inequality and, in turn, the overall result. \qed
+    \item[\textbf{(b)}] 
+        Let $C$ be a maximal chain in $P$, if $P$ has size $r+1$ we are done.
+        Otherwise $C$ has size at most $r$.
+        By the previous exercie we know there exists an antichain decomposition of $P$ in $r$ different antichains, by the pigeonhole principle there must then exist one with at least $s + 1$ elements. \qed
+
+        Lastly, let us define $P$ to be the poset over the set of real numbers $\lbrace x_1, \dots, x_{rs + 1} \rbrace$, where $x_i \leq' x_j$ iff $i < j \wedge x_i \leq x_j$.
+        Naturally, a maximal chain of size $r + 1$ yields a non-decreasing sub-sequence of size $r + 1$.
+        Conversely, an antichain of size $s + 1$ is a chain of $s + 1$ elements with increasing indices yet decreasing values, hence a decreasing subsequence as we wanted to show.
+\end{enumerate}
+
+\end{document}
