@@ -1,0 +1,89 @@
+\documentclass{amsart}
+\renewcommand{\baselinestretch}{1.1}
+%\setlength{\textwidth}{6.0in} \setlength{\oddsidemargin}{0.25in}
+%\setlength{\evensidemargin}{0.25in}
+%\renewcommand{\arraystretch}{.6}
+\parskip 2mm
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fullpage}
+
+%\setlength{\oddsidemargin}{.5in} \setlength{\evensidemargin}{.5in}
+%\setlength{\textwidth}{6.0in} \theoremstyle{plain}
+%\setlength{\topmargin}{-0.5in}\setlength{\textheight}{9.5in}
+
+\newtheorem{theirtheorem}{Theorem}
+\newtheorem{theirproposition}{Proposition}
+\renewcommand{\thetheirtheorem}{\Alph{theirtheorem}}
+\renewcommand{\thetheirproposition}{\Alph{theirproposition}}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\textbf{Theorem}}[section]
+\newtheorem{lemma}[theorem]{\textbf{Lemma}}
+\newtheorem*{lemma*}{\textbf{Lemma}}
+\newtheorem{corollary}[theorem]{\textbf{Corollary}}
+\newtheorem{proposition}[theorem]{\textbf{Proposition}}
+\newtheorem{claim}{\textbf{Claim}}
+\newtheorem{conjecture}{\textbf{Conjecture}}[section]
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\Summ}[1]{\underset{#1}{\sum}}
+\newcommand{\sti}[2]{\left\{\begin{array}{c} #1 \\ #2 \end{array}\right\}}
+
+\newcommand{\diam}{\emph{diam}}
+\newcommand{\conv}{\mbox{Conv}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\D}{\mathcal{D}}
+
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\ber}{\begin{eqnarray}}
+\newcommand{\eer}{\end{eqnarray}}
+\newcommand{\nn}{\nonumber}
+
+\def\st{2}
+
+\thispagestyle{empty}
+\begin{document}
+{\Large Combinatorics -- Spring 2020}
+
+{\Large Chapter 3 -- The Probabilistic Method: The First Moment Method}
+
+\vspace{0.5cm}
+
+ \hrule
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+
+
+\item[\textbf{Problem 1:}]
+    A \emph{tournament} $T$ is an orientation of the edges of the complete graph on $n$ vertices.
+    A tournament has property $S_k$ if for every set $K$ of $k$ vertices there is $x \in V(T)$ such that $(c,y)$ is a directed edge of $T$ for each $y \in K$.
+    Show that if,
+    \begin{equation*}
+        \binom{n}{k}\left(1 - 2^{-k}\right)^{n-k} < 1
+    \end{equation*}
+    then there is a tournament on $n$ vertices that has the property $S_k$.
+        Deduce that this is the case for $n \geq k^2 2^k \text{ln} 2(1 + o(1))$.
+\end{enumerate}
+%
+%
+\paragraph{\textbf{Solution (by Carlos Segarra):}} 
+
+bla bla
+
+\end{document}

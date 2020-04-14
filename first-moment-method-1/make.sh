@@ -1,0 +1,1 @@
+pdflatex ./FirstMomentMethod_Ex1_SegarraCarlos.tex
