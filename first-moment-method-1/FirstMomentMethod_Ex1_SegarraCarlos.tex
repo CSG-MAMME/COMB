@@ -10,6 +10,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{fullpage}
+\usepackage{mathtools}
 
 %\setlength{\oddsidemargin}{.5in} \setlength{\evensidemargin}{.5in}
 %\setlength{\textwidth}{6.0in} \theoremstyle{plain}
@@ -72,7 +73,7 @@
 
 \item[\textbf{Problem 1:}]
     A \emph{tournament} $T$ is an orientation of the edges of the complete graph on $n$ vertices.
-    A tournament has property $S_k$ if for every set $K$ of $k$ vertices there is $x \in V(T)$ such that $(c,y)$ is a directed edge of $T$ for each $y \in K$.
+    A tournament has property $S_k$ if for every set $K$ of $k$ vertices there is $x \in V(T)$ such that $(x,y)$ is a directed edge of $T$ for each $y \in K$.
     Show that if,
     \begin{equation*}
         \binom{n}{k}\left(1 - 2^{-k}\right)^{n-k} < 1
@@ -83,7 +84,67 @@
 %
 %
 \paragraph{\textbf{Solution (by Carlos Segarra):}} 
+let $T$ be a random tournament, this is, a random orientation of the edges of the complete graph on $n$ vertices $K_n$.
+To construct it, we can think of it as a random coloring.
+First, we pick an arbitrary direction for each edge, then with probability $\frac{1}{2}$, we color it with color 0 (and hence, for instance, conserve the chosen direction), or with $1$, and we invert said direction.
 
-bla bla
+Let now $K$ be a subset of $V(T)$ of size $k$, with vertices $\{ y_1, \dots, y_k \}$.
+We denote by $X_K$ the indicator variable that $K$ \emph{does not} fulfil the $S_k$ property.
+This is, there does not exist $x \in V(T)$ such that $\{xy_1, \dots, xy_k \} \subset E(T)$.
+We now compute the probability of such event.
+As usually done, we will start with the probability that such event does indeed happen, once we fix $x \in V(T)$.
+Observe that this means that each edge egressing $x$ to a vertex in $K$ is indeed picked (or colored) in this direction.
+Then,
+\begin{equation*}
+    \begin{split}
+        Pr\left(\{xy_1, \dots, xy_k \} \in E(T), x \text{ fixed }\right) & = \frac{1}{2}^k = 2^{-k} \Rightarrow Pr\left(\{xy_1, \dots, xy_k \} \not\in E(T), x \text{ fixed }\right) = 1 - 2^{-k}.
+    \end{split}
+\end{equation*}
+And as the choice of $x$ is independent from the probability,
+\begin{equation*}
+    \begin{split}
+        Pr(X_K = 1) = Pr\left(\{xy_1, \dots, xy_k \} \not\in E(T), \forall x \in V(T)\backslash K \right) = \left(1 - 2^{-k}\right)^{n-k}.
+    \end{split}
+\end{equation*}
+Observe that we implicitly assume that $x \not\in K$.
+It is clear that if $x$ is in $T$ the property can not hold as we use simple graphs, hence without loops.
+
+As this probability is independent from the choice of $K \subset V(T)$, we can finally compute the expected number of subsets that \emph{do not} fulfil the $S_k$ property (which we denote with the random variable $X$),
+\begin{equation*}
+    \begin{split}
+        \mathbb{E}(X) = \sum_{K \in \binom{[n]}{k}} \mathbb{E}(X_K) = \sum_{K \in \binom{[n]}{k}} Pr(X_K = 1) = \binom{n}{k} (1 - 2^{-k})^{n-k} \leq 1.
+    \end{split}
+\end{equation*}
+Lastly, applying Markov's inequality,
+\begin{equation*}
+    Pr(X \geq 1) \leq \mathbb{E}(X) < 1 \Rightarrow Pr(X = 0) > 0,
+\end{equation*}
+and there exists a coloring such that no subset \emph{does not} fulfil the $S_K$ property, and hence the statement holds.
+
+For the second part of the statement, we know that the initial hypothesis must hold for such a tournament to exist.
+We then need to compute for which values of $n$ this does happen.
+Using the usual bounds, $\binom{n}{k} \leq n^k$ and $e^{-x} \simeq 1 - x$, then:
+\begin{equation*}
+    \begin{split}
+        \binom{n}{k}\left(1 - 2^{-k}\right)^{n-k} \leq n^k e^{-2^{-k}(n - k)} \overset{n \gg k}{\simeq} n^k e^{-2^kn}.
+    \end{split}
+\end{equation*}
+As the application is increasing in $n$, if we prove the lower bound in $n$ for a looser bound, then it will also hold for the tighter.
+Hence, there exists a tournament with the $S_k$ property if $n$ satisfies:
+\begin{equation*}
+    \begin{split}
+        n^k e^{-2^kn} < 1 \Leftrightarrow n^k < e^{2^kn} \Leftrightarrow 2^k k \text{ln} (n) < n.
+    \end{split}
+\end{equation*}
+Let $\alpha \coloneqq 2^k k$, then we want to find the smallest value of $n$ for which $\alpha \text{ln}(n) < n$.
+Following the indication from the statement, we claim that if $n = \alpha \ln\alpha (1 + o(1))$ then the inequality holds (note that this bound is slightly better than the one in the statement as $k \geq 1$).
+We see,
+\begin{equation*}
+    \begin{split}
+        \alpha \ln (n) = \alpha \ln \left( \alpha \ln(\alpha) (1 + o(1)) \right) = \alpha \ln (\alpha) + \alpha \ln ( \ln (\alpha) (1 + o(1)) \leq \alpha \ln (\alpha) (1 + o(1)) = n
+    \end{split}
+\end{equation*}
+what proves the result. \qed
+
 
 \end{document}
