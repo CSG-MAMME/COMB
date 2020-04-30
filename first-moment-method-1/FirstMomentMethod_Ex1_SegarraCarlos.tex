@@ -133,10 +133,10 @@ As the application is increasing in $n$, if we prove the lower bound in $n$ for 
 Hence, there exists a tournament with the $S_k$ property if $n$ satisfies:
 \begin{equation*}
     \begin{split}
-        n^k e^{-2^kn} < 1 \Leftrightarrow n^k < e^{2^kn} \Leftrightarrow 2^k k \text{ln} (n) < n.
+        n^k e^{-2^kn} < 1 \Leftrightarrow n^k < e^{2^kn} \Leftrightarrow 2^{-k} k \text{ln} (n) < n.
     \end{split}
 \end{equation*}
-Let $\alpha \coloneqq 2^k k$, then we want to find the smallest value of $n$ for which $\alpha \text{ln}(n) < n$.
+Let $\alpha \coloneqq 2^{-k} k$, then we want to find the smallest value of $n$ for which $\alpha \text{ln}(n) < n$.
 Following the indication from the statement, we claim that if $n = \alpha \ln\alpha (1 + o(1))$ then the inequality holds (note that this bound is slightly better than the one in the statement as $k \geq 1$).
 We see,
 \begin{equation*}
